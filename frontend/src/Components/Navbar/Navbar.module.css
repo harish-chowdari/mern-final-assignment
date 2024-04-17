@@ -1,0 +1,77 @@
+.navbar{
+    margin: 0px;
+    background-color: white;
+    max-width: 1440px;
+    border-bottom: 1px solid green;
+    position: sticky;
+    top: -50px;
+}
+
+.logo{
+    width: 40px;
+    margin: 0px;
+}
+
+
+.dashboard{
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 30px;
+    flex-wrap: wrap;
+    margin: 0px;
+    align-items: center;
+    margin: 0px;
+
+}
+
+.div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 750px;
+}
+
+.left{
+    display: flex;
+    gap: 50px;
+    margin-left: 0px;
+    
+}
+
+.right{
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    
+}
+
+.link{
+    text-decoration: none;
+    color: black;
+    font-size: 1.3rem;
+    color: blue;
+}
+
+.right p{
+    font-size: 1.35rem;
+    text-transform: capitalize;
+}
+
+.btn{
+    cursor: pointer;
+    padding: 7px;
+    border: none;
+    background-color: rgb(78, 235, 72);
+    font-size: 1rem;
+}
+
+.loginDiv {
+    display: flex;
+}
+
+.loginDiv h3{
+    text-align: center;
+    margin: 15px auto;
+}
+
+

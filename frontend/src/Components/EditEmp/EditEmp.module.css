@@ -1,0 +1,116 @@
+.container {
+    max-width: 400px;
+    margin: 10px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .create {
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 0px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input {
+    margin-bottom: 15px;
+  }
+  
+  .input p {
+    margin-bottom: 5px;
+  }
+  
+  .container input{
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    
+  }
+  
+  .select {
+    width: 95%;
+    padding: 10px;    
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .radio {
+    margin-bottom: 15px;
+  }
+  
+  .radio p {
+    margin-bottom: 10px;
+  }
+  
+  .gender {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .male{
+    display: flex;
+    gap: 5px;
+  }
+
+  .female{
+    display: flex;
+    gap: 5px;
+    
+  }
+  
+ 
+  
+  .checkbox {
+    margin-bottom: 15px;
+  }
+  
+  .checkbox p {
+    margin-bottom: 10px;
+  }
+  
+  .checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .checkboxes div {
+    margin-right: 15px;
+    display: flex;
+    gap: 5px;
+  }
+  
+  .checkboxes {
+    margin-right: 5px;
+  }
+  
+  .submit {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .submit:hover {
+    background-color: #0056b3;
+  }
+  
+  .err {
+    color: red;
+    font-size: 1.35rem;
+    text-align: center;
+    letter-spacing: 0.9px;
+    margin-top: 10px;
+  }
+  

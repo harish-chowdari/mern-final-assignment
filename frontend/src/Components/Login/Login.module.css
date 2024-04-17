@@ -1,0 +1,32 @@
+.loginPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.username {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.password {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.input{
+    font-size: 1.2rem;
+}
+
+.error{
+    color: red;
+    margin: 0px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 1.3rem;
+}
+

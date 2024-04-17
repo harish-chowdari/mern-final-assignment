@@ -1,0 +1,12 @@
+.dashboard{
+    margin: 0px;
+    padding: 10px;
+    font-size: 1.1rem;
+    background-color: yellow;
+}
+
+.welcome{
+    text-align: center;
+    margin-top: 50px;
+    font-size: 1.5rem;
+}
