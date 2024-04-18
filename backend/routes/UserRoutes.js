@@ -6,7 +6,7 @@ const controller = require("../controller/controller")
 
 router.post("/login", controller.postLogin)
 
-
+ 
 router.get("/details", controller.getReq)
 
 

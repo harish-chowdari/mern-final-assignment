@@ -29,7 +29,8 @@ const Login = () => {
         if(res.data.success)
         {
           alert("login successful")
-          window.location.replace('/admin')
+          window.location.replace('/home')
+          localStorage.setItem("token", res.data.token);
           localStorage.setItem("userName", res.data.userName)
         }
 

@@ -15,6 +15,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("userName")
+    localStorage.removeItem("token")
     setIsLoggedIn(false) 
   }
 
@@ -50,7 +51,7 @@ const Navbar = () => {
         : 
         <div className={Styles.loginDiv}>
         <img style={{width:"35px", margin:"10px 0px 10px 20px"}} src={logo} alt='logo'/>
-        <h3>Login</h3>
+        <Link to="/" className={Styles.LoginLink}><h3>Login</h3></Link>
         </div>
       }
     </div>

@@ -9,7 +9,12 @@ import EditEmp from './Components/EditEmp/EditEmp.jsx'
 
 
 
+const userName = localStorage.getItem("userName")
+
+
 const App = () => {
+
+  
   return (
     <div>
     
@@ -18,11 +23,11 @@ const App = () => {
       <BrowserRouter>
         <Navbar/>
           <Routes>
-            <Route path='/' element={<Login/>} />
-            <Route path='/admin' element={<Dashboard/>} />
-            <Route path='/home' element={<Home/>} />
-            <Route path='/emp' element={<EmpList/>} />
-            <Route path='/edit/:id' element={<EditEmp/>} />
+            <Route path='/' element={<Login/>} /> 
+            { userName ? <Route path='/create-employee' element={<Home/>} /> : <Route path='/'/>}
+            { userName ? <Route path='/home' element={<Dashboard/>} /> : <Route path='/'/>}
+            { userName ? <Route path='/emp' element={<EmpList/>} /> : <Route path='/'/>}
+            { userName ? <Route path='/edit/:id' element={<EditEmp/>} /> : <Route path='/'/>}
           </Routes>
       </BrowserRouter>
       

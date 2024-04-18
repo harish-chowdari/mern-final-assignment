@@ -57,7 +57,7 @@ const filteredEmpDetails = empDetails.filter(emp =>
       <div className={Styles.box}>
         <div className={Styles.countdiv}>
           <p>Total Count: {empDetails.length}</p>
-          <Link to="/home" className={Styles.createemp}>Create Employee</Link>
+          <Link to="/create-employee" className={Styles.createemp}>Create Employee</Link>
         </div>
         <div className={Styles.search}>
           <p>Search</p>
