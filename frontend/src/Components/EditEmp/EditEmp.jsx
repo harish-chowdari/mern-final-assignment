@@ -85,34 +85,37 @@ const EditEmp = () => {
       return;
     }
   
-    if (!image) {
-      setErr("Image is required");
-      return;
-    }
-  
     try {
-      
-      const formData = new FormData();
-      formData.append('product', image);
-      const imageResponse = await axios.post('http://localhost:4005/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
+      let imageResponse;
+      if (image) {
+        const formData = new FormData();
+        formData.append('product', image);
+        imageResponse = await axios.post('http://localhost:4005/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+      }
   
-      
       const response = await axios.put(`http://localhost:4005/update/${id}`, {
         ...formDetails,
-        image: imageResponse.data.image_url
+        image: imageResponse ? imageResponse.data.image_url : formDetails.image // Use uploaded image URL if available, otherwise use existing image URL
       });
   
-      console.log(response.data); 
-      alert("Form submitted Successfully"); 
+      console.log(response.data);
+      alert("Form submitted Successfully");
     } catch (error) {
-      console.error('Error updating employee:', error);
-      
+      if (error.response && error.response.status === 404) {
+        // Handle 404 error (Not Found)
+        console.error('Error updating employee: Employee not found');
+        alert("Error updating employee: Employee not found");
+      } else {
+        console.error('Error updating employee:', error);
+        alert("Error updating employee. Please try again.");
+      }
     }
   };
+  
   
   
 
@@ -128,11 +131,16 @@ const EditEmp = () => {
         ...prevData,
         image: selectedImage
       }));
+      setEmpData(prevEmpData => ({
+        ...prevEmpData,
+        image: URL.createObjectURL(selectedImage) // Update empData.image with selected image URL
+      }));
       setErr("");
     } else {
       setErr("Please select a valid image file (JPG or PNG)");
     }
   };
+  
   
   
   

@@ -84,7 +84,8 @@ const Home = () => {
       return
     }
 
-    if(!formDetails.mobile || formDetails.mobile.length < 10 || formDetails.mobile.length > 10)
+    if(!formDetails.mobile || formDetails.mobile.length < 10 || 
+      formDetails.mobile.length > 10)
     {
       setErr("Mobile number must be 10 digits")
       return
@@ -249,14 +250,16 @@ const Home = () => {
         <div className={Styles.input}>
           <p>Img Upload</p>
           
-          <label htmlFor='file-input'>
+          <label htmlFor='file-input'> 
               <img width="100px"
-                src={image ? URL.createObjectURL(image) : upload_area} alt='' />
+                src={image ? URL.createObjectURL(image) : 
+                upload_area} alt='' />
           </label>
 
-      <input  hidden type='file' 
+      <input  type='file' 
               name='image' id='file-input' 
-              onChange={imageHandler} />
+              onChange={imageHandler}
+              />
         </div>
 
         {err && <p className={Styles.err}>{err}</p>}

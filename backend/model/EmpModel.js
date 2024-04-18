@@ -14,7 +14,7 @@ const EmpSchema = mongoose.Schema({
     },
     designation :{
         type:String
-    },
+    }, 
     gender :{
         type:String
     },

@@ -1,81 +1,64 @@
-const EmpSchema = require("../model/EmpModel")
+const EmpSchema = require("../model/EmpModel");
 
+const port = 4005;
 
-const port=4005 
-
-function uploadImage(req,res) {
-    return res.status(200).json({
-        success:true,
-        image_url: `http://localhost:${port}/images/${req.file.filename}`
-    })
+function uploadImage(req, res, next) {
+    try {
+        if (!req.file || !req.file.filename) {
+            // If no file is uploaded, proceed to the next middleware
+            return next();
+        }
+        
+        return res.status(200).json({
+            success: true,
+            image_url: `http://localhost:${port}/images/${req.file.filename}`
+        });
+    } catch (error) {
+        console.error("Error uploading image:", error);
+        return res.status(500).json({ error: "Internal server error" });
+    }
 }
 
-
-
-
-
-async function postEmp(req,res) {
-    
-    try
-    {
-        const {name, email, mobile, designation, gender, courses, image} = req.body
-
-        let exist = await EmpSchema.findOne({email})
+async function postEmp(req, res) {
+    try {
+        const { name, email, mobile, designation, gender, courses, image } = req.body;
+        let exist = await EmpSchema.findOne({ email });
         
-        if(exist)
-        {
-            return res.status(200).json({msg: "Email already exist"})
+        if (exist) {
+            return res.status(200).json({ msg: "Email already exists" });
         }
 
-        const Data = new EmpSchema({
-        name, 
-        email,
-        mobile, 
-        designation, 
-        gender, 
-        courses, 
-        image
+        const data = new EmpSchema({
+            name, 
+            email,
+            mobile, 
+            designation, 
+            gender, 
+            courses, 
+            image
+        });
 
-    })
-
-        const d = await Data.save()
-        console.log(d)
-        return res.status(200).json({success:true, d})
-        
+        const d = await data.save();
+        console.log(d);
+        return res.status(200).json({ success: true, d });
+    } catch (error) {
+        console.log({ error: "Internal server error" });
+        return res.status(500).json({ error: "Internal server error" });
     }
-
-    catch(err)
-    {
-        console.log({error : "Internal server error"})
-        return res.status(500).json({error : "Internal server error"}) 
-    }
-
 }
 
-
-
-async function getEmp(req,res) {
-
-    try
-    {
-        const Data = await EmpSchema.find()
-
-        res.json(Data)
+async function getEmp(req, res) {
+    try {
+        const data = await EmpSchema.find();
+        res.json(data);
+    } catch (error) {
+        console.log({ error: "Internal server error" });
+        return res.status(500).json({ error: "Internal server error" });
     }
-
-    catch(err)
-    {
-        console.log({error : "Internal server error"})
-        return res.status(500).json({error : "Internal server error"}) 
-    }
-    
 }
-
-
 
 async function getEmpById(req, res) {
     const id = req.params.id;
-
     try {
         const emp = await EmpSchema.findById(id);
         if (!emp) {
@@ -88,19 +71,14 @@ async function getEmpById(req, res) {
     }
 }
 
-
-
-
 async function updateEmp(req, res) {
     const id = req.params.id;
-
     try {
         const { name, email, mobile, designation, gender, courses, image } = req.body;
-
         let existingEmp = await EmpSchema.findById(id);
 
         if (!existingEmp) {
-            return res.status(404).json({ error: "Employee not found" });
+            return res.status(200).json({ error: "Employee not found" });
         }
 
         // Update employee details
@@ -110,7 +88,7 @@ async function updateEmp(req, res) {
         existingEmp.designation = designation;
         existingEmp.gender = gender;
         existingEmp.courses = courses;
-        existingEmp.image = image;
+        existingEmp.image = image; 
 
         // Save the updated employee details
         const updatedEmp = await existingEmp.save();
@@ -122,27 +100,19 @@ async function updateEmp(req, res) {
     }
 }
 
-
-
-
 async function deleteEmp(req, res) {
     const id = req.query.id;
-
     try {
         const deletedEmp = await EmpSchema.findByIdAndDelete(id);
-        if(!deletedEmp) {
+        if (!deletedEmp) {
             return res.status(404).json({ error: "Employee not found" });
         }
         return res.json({ success: true, message: "Employee deleted successfully" });
-    } 
-    
-    catch(error) {
+    } catch (error) {
         console.error("Error deleting employee:", error);
         return res.status(500).json({ error: "Internal server error" });
     }
 }
-
-
 
 module.exports = {
     uploadImage,
@@ -151,4 +121,4 @@ module.exports = {
     getEmpById,
     deleteEmp,
     updateEmp 
-}
+};

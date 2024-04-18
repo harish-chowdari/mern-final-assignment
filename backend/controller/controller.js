@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const MernSchema = require('../model/UserModel');
 
-// Function to generate JWT token
 const generateToken = (user) => {
   return jwt.sign({ id: user._id, userName: user.userName }, 'your_secret_key', { expiresIn: '1h' });
 };
