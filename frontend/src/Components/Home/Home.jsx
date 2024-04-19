@@ -256,7 +256,7 @@ const Home = () => {
                 upload_area} alt='' />
           </label>
 
-      <input  type='file' 
+      <input hidden type='file' 
               name='image' id='file-input' 
               onChange={imageHandler}
               />
